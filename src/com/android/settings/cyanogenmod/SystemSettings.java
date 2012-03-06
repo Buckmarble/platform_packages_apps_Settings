@@ -48,6 +48,7 @@ public class SystemSettings extends SettingsPreferenceFragment {
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
     private static final String KEY_HARDWARE_KEYS = "hardware_keys";
+    private static final String KEY_NAVIGATION_BAR = "navigation_bar";
 
     private CheckBoxPreference mPowerButtonTorch;
     private static final String KEY_CHRONUS = "chronus";
@@ -63,9 +64,7 @@ public class SystemSettings extends SettingsPreferenceFragment {
         addPreferencesFromResource(R.xml.system_settings);
 
         // Dont display the lock clock preference if its not installed
-        removePreferenceIfPackageNotInstalled(findPreference(KEY_CHRONUS));
-        mPhoneDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER);
-        mTabletDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_TABLET);
+        removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
 
         /*if (Utils.isTablet(getActivity())) {
             if (mPhoneDrawer != null) {
@@ -90,8 +89,28 @@ public class SystemSettings extends SettingsPreferenceFragment {
                 if (hardKeys != null) {
                     getPreferenceScreen().removePreference(hardKeys);
                 }
+        // Only show the hardware keys config on a device that does not have a navbar
+        // Only show the navigation bar config on phones that has a navigation bar
+        boolean removeKeys = false;
+        boolean removeNavbar = false;
+        IWindowManager windowManager = IWindowManager.Stub.asInterface(
+                ServiceManager.getService(Context.WINDOW_SERVICE));
+        try {
+            if (windowManager.hasNavigationBar()) {
+                removeKeys = true;
+            } else {
+                removeNavbar = true;
             }
         } catch (RemoteException e) {
+            // Do nothing
+        }
+
+        // Act on the above
+        if (removeKeys) {
+            getPreferenceScreen().removePreference(findPreference(KEY_HARDWARE_KEYS));
+        }
+        if (removeNavbar) {
+            getPreferenceScreen().removePreference(findPreference(KEY_NAVIGATION_BAR));
         }
     }
 
