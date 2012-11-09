@@ -39,6 +39,14 @@
         android:title="@string/power_menu_title"
         android:fragment="com.android.settings.cyanogenmod.PowerMenu" />
 
+    <PreferenceScreen
+        android:id="@+id/slim_notification_shortcuts"
+        android:icon="@drawable/ic_rb_notification"
+        android:fragment="com.android.settings.slim.notificationshortcuts.NotificationShortcuts"
+        android:key="slim_shortcuts_settings"
+        android:title="@string/notification_shortcuts_settings_title"
+        android:summary="@string/notification_shortcuts_settings_summary" />
+
     <!-- Lock clock -->
     <PreferenceScreen
         android:key="lock_clock"
