@@ -4397,7 +4397,7 @@
     <!-- Cell Broadcast settings description [CHAR LIMIT=100] -->
     <string name="cell_broadcast_settings_summary">Select the types of emergency alerts to display.</string>
 
-    <!-- CYANOGENMOD AND PROJECT ELITE EDITS START -->
+    <!-- CYANOGENMOD EDITS START -->
 
     <string name="ok">OK</string>
 
@@ -4464,15 +4464,6 @@
     <string name="navigation_bar_reset_toast">Navigation bar reset to default</string>
     <string name="navigation_bar_menu_editable">Editable</string>
     <string name="navigation_bar_menu_locked">Locked</string>
-    <string name="navigation_bar_tint_title">Navigation bar color</string>
-    <string name="navigation_bar_glow_tint_title">Navigation bar glow color</string>
-    <string name="glow_times_superquick">Super quick</string>
-    <string name="glow_times_quick">Quick</string>
-    <string name="glow_times_normal">Normal</string>
-    <string name="navigation_bar_glow_tint_summary">When you press on a button, there is a glow. Use this to change the color of the glow.</string>
-    <string name="glow_times_off">Off</string>
-    <string name="glow_times_title">Button glow animation</string>
-    <string name="button_transparency_title">Nav button transparency</string>
 
     <!-- Navigation Height/Width Settings -->
     <string name="navbar_header">NavigationBar Size</string>
@@ -4781,16 +4772,5 @@
     <string name="pref_flash_mode_title">Flash mode</string>
     <string name="expanded_haptic_feedback_title">Haptic feedback</string>
 
-    <!-- **** CYANOGENMOD AND PROJECT ELITE ADDITIONS END **** -->
-
-    <!-- Color Picker -->
-    <string name="dialog_color_picker">Color Picker</string>
-    <string name="press_color_to_apply">Press on Color to apply</string>
-    <string name="arrow_right">→</string>
-    <string name="arrow_down">↓</string>
-    <string name="hex">Hex:</string>
-    <string name="hex_hint">#FF000000</string>
-    <string name="set">Set</string>
-    <string name="ics_color">!!!</string>
-
+    <!-- **** CYANOGENMOD ADDITIONS END **** -->
 </resources>
