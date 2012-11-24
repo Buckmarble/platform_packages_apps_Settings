@@ -248,13 +248,13 @@ public class NavBar2 extends SettingsPreferenceFragment implements
             resId = R.string.glow_times_off;
             mGlowTimes.setValueIndex(0);
         } else if (glowArray[1].equals(combinedTime)) {
-            resId = R.string.glow_times_fast;
+            resId = R.string.glow_times_superquick;
             mGlowTimes.setValueIndex(1);
         } else if (glowArray[2].equals(combinedTime)) {
-            resId = R.string.glow_times_normal;
+            resId = R.string.glow_times_quick;
             mGlowTimes.setValueIndex(2);
         } else {
-            resId = R.string.glow_times_slow;
+            resId = R.string.glow_times_normal;
             mGlowTimes.setValueIndex(3);
         }
         mGlowTimes.setSummary(getResources().getString(resId));
