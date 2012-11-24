@@ -24,7 +24,7 @@
         android:fragment="com.android.settings.cyanogenmod.PowerWidget"
         android:title="@string/notification_drawer_title" />
 
-    <com.android.settings.WarnedListPreference/>
+    <com.android.settings.WarnedListPreference
 
     <PreferenceScreen
 	android:key="navigation_bar"
