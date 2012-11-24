@@ -4737,40 +4737,6 @@
     <string name="volume_ring_only_description">Ringtone</string>
 
 
-    <!-- Power Widget  -->
-    <string name="power_widget_title">Power widget</string>
-    <string name="title_expanded_widget">Power widget</string>
-    <string name="power_widget_behavior">Widget behavior</string>
-    <string name="title_expanded_hide_onchange">Close drawer on change</string>
-    <string name="title_expanded_hide_indicator">Hide indicators</string>
-    <string name="title_expanded_hide_scrollbar">Hide scrollbar</string>
-    <string name="title_widget_picker">Widget buttons</string>
-    <string name="summary_widget_picker">View or change the displayed buttons</string>
-    <string name="title_widget_order">Widget button order</string>
-    <string name="summary_widget_order">View or change the order of the buttons</string>
-    <string name="title_buttons">Buttons</string>
-    <string name="title_toggle_wifi">Toggle Wi-Fi</string>
-    <string name="title_toggle_bluetooth">Toggle Bluetooth</string>
-    <string name="title_toggle_gps">Toggle GPS</string>
-    <string name="title_toggle_sound">Toggle Sound</string>
-    <string name="title_toggle_brightness">Toggle Brightness</string>
-    <string name="title_toggle_sync">Toggle Sync</string>
-    <string name="title_toggle_wifiap">Toggle Wi-Fi AP</string>
-    <string name="title_toggle_screentimeout">Toggle Screen timeout</string>
-    <string name="title_toggle_mobiledata">Toggle Mobile data</string>
-    <string name="title_toggle_lockscreen">Toggle Lock screen</string>
-    <string name="title_toggle_networkmode">Toggle 2G/3G</string>
-    <string name="title_toggle_autorotate">Toggle Orientation</string>
-    <string name="title_toggle_airplane">Toggle Airplane mode</string>
-    <string name="title_toggle_flashlight">Toggle LED flashlight</string>
-    <string name="title_toggle_sleep">Go to sleep</string>
-    <string name="title_toggle_media_play_pause">Media: Toggle Play/Pause</string>
-    <string name="title_toggle_media_previous">Media: Skip to Previous</string>
-    <string name="title_toggle_media_next">Media: Skip to Next</string>
-    <string name="title_toggle_lte">Toggle LTE</string>
-    <string name="title_toggle_wimax">Toggle WiMAX</string>
-    <string name="title_button_modes">Button modes</string>
-    <string name="pref_brightness_mode_title">Brightness modes</string>
 
     <!-- **** CYANOGENMOD AND PROJECT ELITE ADDITIONS END **** -->
 
