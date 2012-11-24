@@ -4400,7 +4400,6 @@
     <!-- CYANOGENMOD AND PROJECT ELITE EDITS START -->
 
     <string name="ok">OK</string>
-    <string name="lockscreen_target_reset_title">Reset</string>
 
     <!-- Quiet hours -->
     <string name="quiet_hours_title">Quiet hours</string>
