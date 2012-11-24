@@ -4452,10 +4452,6 @@
     <!-- Notification Drawer  -->
     <string name="notification_drawer_title">Notification drawer</string>
 
-    <!-- Combined Bar  -->
-    <string name="combined_bar_title">Combined bar</string>
-    <string name="combined_bar_auto_hide_title">Auto hide</string>
-    <string name="combined_bar_auto_hide_summary">Allow combined bar to hide when showing a fullscreen app</string>
 
     <!-- Navigation Bar  -->
     <string name="navigation_bar_title">Navigation Bar</string>
