@@ -25,14 +25,6 @@
         android:title="@string/notification_drawer_title" />
 
     <com.android.settings.WarnedListPreference
-
-    <PreferenceScreen
-	android:key="navigation_bar"
-	android:fragment="com.android.settings.projectelite.NavBarprefs"
-	android:title="@string/navigation_bar_title" />
-
-
-    <ListPreference
         android:key="font_size"
         android:title="@string/title_font_size"
         android:summary="@string/summary_font_size"
