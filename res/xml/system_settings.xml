@@ -32,9 +32,5 @@
         android:entryValues="@array/entryvalues_font_size"
         android:dialogTitle="@string/dialog_title_font_size" />
 
-    <PreferenceScreen
-	android:key="@+id/nav_bar"
-	android:title="@string/navbar_header"
-	android:fragment="com.android.settings.cyanogenmod.NavBar2" />
 
 </PreferenceScreen>
