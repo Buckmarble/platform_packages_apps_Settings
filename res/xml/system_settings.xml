@@ -37,9 +37,4 @@
 	android:title="@string/navbar_header"
 	android:fragment="com.android.settings.cyanogenmod.NavBar2" />
 
-    <PreferenceScreen
-	android:key="navigation_bar"
-	android:fragment="com.android.settings.projectelite.NavBarprefs"
-	android:title="@string/navigation_bar_title" />
-
 </PreferenceScreen>

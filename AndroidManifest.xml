@@ -1481,8 +1481,6 @@
 
         <activity android:name=".cyanogenmod.NavBar2" />
 
-        <activity android:name=".projectelite.NavBarprefs" />
-
         <activity android:name=".profiles.NFCProfile"
                 android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
