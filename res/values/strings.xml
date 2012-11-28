@@ -4702,9 +4702,6 @@
     <string name="pulse_speed_slow">Slow</string>
     <string name="pulse_speed_very_slow">Very slow</string>
 
-    <!-- Advanced, Device specific (DeviceParts) settings -->
-    <string name="advanced_settings_title">Advanced</string
-
     <!-- Battery light settings  -->
     <string name="battery_light_title">Battery light</string>
     <string name="battery_low_pulse_title">Pulse if battery low</string>
