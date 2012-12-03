@@ -136,10 +136,6 @@ public class ProfilesSettings extends SettingsPreferenceFragment {
             mProfileEnabler.resume();
         }
 
-        // If running on a phone, remove padding around tabs
-        if (!Utils.isTablet(getActivity())) {
-            mContainer.setPadding(0, 0, 0, 0);
-        }
     }
 
     

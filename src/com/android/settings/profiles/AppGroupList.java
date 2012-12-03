@@ -55,10 +55,6 @@ public class AppGroupList extends SettingsPreferenceFragment {
         super.onResume();
         refreshList();
 
-        // On tablet devices remove the padding
-        if (Utils.isTablet(getActivity())) {
-            getListView().setPadding(0, 0, 0, 0);
-        }
 }
 
     public void refreshList() {
