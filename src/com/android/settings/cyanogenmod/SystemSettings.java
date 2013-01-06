@@ -64,7 +64,7 @@ public class SystemSettings extends SettingsPreferenceFragment {
         addPreferencesFromResource(R.xml.system_settings);
 
         // Dont display the lock clock preference if its not installed
-        removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
+        removePreferenceIfPackageNotInstalled(findPreference(KEY_CHRONUS));
 
         /*if (Utils.isTablet(getActivity())) {
             if (mPhoneDrawer != null) {
