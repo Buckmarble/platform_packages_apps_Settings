@@ -90,6 +90,7 @@ public class SystemSettings extends SettingsPreferenceFragment {
         if (removeNavbar) {
             getPreferenceScreen().removePreference(findPreference(KEY_NAVIGATION_BAR));
         }
+    }
 
         mPowerButtonTorch = (CheckBoxPreference) findPreference(KEY_POWER_BUTTON_TORCH);
         if (torchSupported()) {
@@ -99,7 +100,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
         } else {
             getPreferenceScreen().removePreference(mPowerButtonTorch);
         }
-     }
 
     @Override
     public void onResume() {
