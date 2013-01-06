@@ -44,8 +44,6 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     private static final String KEY_HARDWARE_KEYS = "hardware_keys";
 
     private ListPreference mFontSizePref;
-    private PreferenceScreen mPhoneDrawer;
-    private PreferenceScreen mTabletDrawer;
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -57,18 +55,6 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
         mFontSizePref = (ListPreference) findPreference(KEY_FONT_SIZE);
         mFontSizePref.setOnPreferenceChangeListener(this);
-        mPhoneDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER);
-        mTabletDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_TABLET);
-
-        if (Utils.isScreenLarge()) {
-            if (mPhoneDrawer != null) {
-                getPreferenceScreen().removePreference(mPhoneDrawer);
-            }
-        } else {
-            if (mTabletDrawer != null) {
-                getPreferenceScreen().removePreference(mTabletDrawer);
-            }
-        }
 
         IWindowManager windowManager = IWindowManager.Stub.asInterface(
                 ServiceManager.getService(Context.WINDOW_SERVICE));
