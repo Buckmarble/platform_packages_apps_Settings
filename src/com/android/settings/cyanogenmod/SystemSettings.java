@@ -76,19 +76,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
             }
         }
 
-        IWindowManager windowManager = IWindowManager.Stub.asInterface(
-                ServiceManager.getService(Context.WINDOW_SERVICE));
-        try {
-            if (!windowManager.hasNavigationBar()) {
-                Preference naviBar = findPreference(KEY_NAVIGATION_BAR);
-                if (naviBar != null) {
-                    getPreferenceScreen().removePreference(naviBar);
-                }
-            } else {
-                Preference hardKeys = findPreference(KEY_HARDWARE_KEYS);
-                if (hardKeys != null) {
-                    getPreferenceScreen().removePreference(hardKeys);
-                }
         // Only show the hardware keys config on a device that does not have a navbar
         // Only show the navigation bar config on phones that has a navigation bar
         boolean removeKeys = false;
@@ -122,7 +109,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
         } else {
             getPreferenceScreen().removePreference(mPowerButtonTorch);
         }
-    }
 
     @Override
     public void onResume() {
