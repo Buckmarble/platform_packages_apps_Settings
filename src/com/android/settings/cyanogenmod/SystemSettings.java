@@ -44,10 +44,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
     private static final String TAG = "SystemSettings";
 
     private static final String KEY_POWER_BUTTON_TORCH = "power_button_torch";
-    private static final String KEY_FONT_SIZE = "font_size";
-    private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
-    private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
-    private static final String KEY_HARDWARE_KEYS = "hardware_keys";
 
     private CheckBoxPreference mPowerButtonTorch;
     private static final String KEY_CHRONUS = "chronus";
@@ -64,36 +60,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
 
         // Dont display the lock clock preference if its not installed
         removePreferenceIfPackageNotInstalled(findPreference(KEY_CHRONUS));
-        mPhoneDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER);
-        mTabletDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_TABLET);
-
-        /*if (Utils.isTablet(getActivity())) {
-            if (mPhoneDrawer != null) {
-                getPreferenceScreen().removePreference(mPhoneDrawer);
-            }
-        } else*/ {
-            if (mTabletDrawer != null) {
-                getPreferenceScreen().removePreference(mTabletDrawer);
-            }
-        }
-
-        IWindowManager windowManager = IWindowManager.Stub.asInterface(
-                ServiceManager.getService(Context.WINDOW_SERVICE));
-        try {
-            if (!windowManager.hasNavigationBar()) {
-                Preference naviBar = findPreference(KEY_NAVIGATION_BAR);
-                if (naviBar != null) {
-                    getPreferenceScreen().removePreference(naviBar);
-                }
-            } else {
-                Preference hardKeys = findPreference(KEY_HARDWARE_KEYS);
-                if (hardKeys != null) {
-                    getPreferenceScreen().removePreference(hardKeys);
-                }
-            }
-        } catch (RemoteException e) {
-        }
-    }
 
         mPowerButtonTorch = (CheckBoxPreference) findPreference(KEY_POWER_BUTTON_TORCH);
         if (torchSupported()) {
