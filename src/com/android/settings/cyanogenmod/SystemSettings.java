@@ -16,20 +16,16 @@
 
 package com.android.settings.cyanogenmod;
 
+import android.app.ActivityManagerNative;
 import android.content.Context;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.content.Context;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.view.IWindowManager;
-import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
-import android.provider.Settings;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.IWindowManager;
 
@@ -37,25 +33,21 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class SystemSettings extends SettingsPreferenceFragment {
+public class SystemSettings extends SettingsPreferenceFragment implements
+        Preference.OnPreferenceChangeListener {
     private static final String TAG = "SystemSettings";
 
-    private static final String KEY_POWER_BUTTON_TORCH = "power_button_torch";
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
-    private static final String KEY_HARDWARE_KEYS = "hardware_keys";
     private static final String KEY_NAVIGATION_BAR = "navigation_bar";
+    private static final String KEY_HARDWARE_KEYS = "hardware_keys";
 
-    private CheckBoxPreference mPowerButtonTorch;
-    private static final String KEY_CHRONUS = "chronus";
+    private ListPreference mFontSizePref;
+    private PreferenceScreen mPhoneDrawer;
+    private PreferenceScreen mTabletDrawer;
 
-    private boolean torchSupported() {
-        return getResources().getBoolean(R.bool.has_led_flash);
-    }
+    private final Configuration mCurConfig = new Configuration();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,47 +55,76 @@ public class SystemSettings extends SettingsPreferenceFragment {
 
         addPreferencesFromResource(R.xml.system_settings);
 
-        // Dont display the lock clock preference if its not installed
-        removePreferenceIfPackageNotInstalled(findPreference(KEY_CHRONUS));
+        mFontSizePref = (ListPreference) findPreference(KEY_FONT_SIZE);
+        mFontSizePref.setOnPreferenceChangeListener(this);
+        mPhoneDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER);
+        mTabletDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_TABLET);
 
+        if (Utils.isScreenLarge()) {
+            if (mPhoneDrawer != null) {
+                getPreferenceScreen().removePreference(mPhoneDrawer);
+            }
+        } else {
+            if (mTabletDrawer != null) {
+                getPreferenceScreen().removePreference(mTabletDrawer);
+            }
+        }
 
-        // Only show the hardware keys config on a device that does not have a navbar
-        // Only show the navigation bar config on phones that has a navigation bar
-        boolean removeKeys = false;
-        boolean removeNavbar = false;
         IWindowManager windowManager = IWindowManager.Stub.asInterface(
                 ServiceManager.getService(Context.WINDOW_SERVICE));
         try {
-            if (windowManager.hasNavigationBar()) {
-                removeKeys = true;
+            if (!windowManager.hasNavigationBar()) {
+                getPreferenceScreen().removePreference(findPreference(KEY_NAVIGATION_BAR));
+                Preference naviBar = findPreference(KEY_NAVIGATION_BAR);
+                if (naviBar != null) {
+                    getPreferenceScreen().removePreference(naviBar);
+                }
             } else {
-                removeNavbar = true;
+                Preference hardKeys = findPreference(KEY_HARDWARE_KEYS);
+                if (hardKeys != null) {
+                    getPreferenceScreen().removePreference(hardKeys);
+                }
             }
         } catch (RemoteException e) {
-            // Do nothing
+        }
+    }
+
+    int floatToIndex(float val) {
+        String[] indices = getResources().getStringArray(R.array.entryvalues_font_size);
+        float lastVal = Float.parseFloat(indices[0]);
+        for (int i=1; i<indices.length; i++) {
+            float thisVal = Float.parseFloat(indices[i]);
+            if (val < (lastVal + (thisVal-lastVal)*.5f)) {
+                return i-1;
+            }
+            lastVal = thisVal;
+        }
+        return indices.length-1;
+    }
+
+    public void readFontSizePreference(ListPreference pref) {
+        try {
+            mCurConfig.updateFrom(ActivityManagerNative.getDefault().getConfiguration());
+        } catch (RemoteException e) {
+            Log.w(TAG, "Unable to retrieve font size");
         }
 
-        // Act on the above
-        if (removeKeys) {
-            getPreferenceScreen().removePreference(findPreference(KEY_HARDWARE_KEYS));
-        }
-        if (removeNavbar) {
-            getPreferenceScreen().removePreference(findPreference(KEY_NAVIGATION_BAR));
-        }
+        // mark the appropriate item in the preferences list
+        int index = floatToIndex(mCurConfig.fontScale);
+        pref.setValueIndex(index);
 
-        mPowerButtonTorch = (CheckBoxPreference) findPreference(KEY_POWER_BUTTON_TORCH);
-        if (torchSupported()) {
-            mPowerButtonTorch.setChecked((Settings.System.getInt(getActivity().
-                    getApplicationContext().getContentResolver(),
-                    Settings.System.POWER_BUTTON_TORCH, 0) == 1));
-        } else {
-            getPreferenceScreen().removePreference(mPowerButtonTorch);
-        }
-     }
+        // report the current size in the summary text
+        final Resources res = getResources();
+        String[] fontSizeNames = res.getStringArray(R.array.entries_font_size);
+        pref.setSummary(String.format(res.getString(R.string.summary_font_size),
+                fontSizeNames[index]));
+    }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        updateState();
     }
 
     @Override
@@ -111,33 +132,25 @@ public class SystemSettings extends SettingsPreferenceFragment {
         super.onPause();
     }
 
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mPowerButtonTorch) {
-            boolean enabled = mPowerButtonTorch.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.POWER_BUTTON_TORCH,
-                    enabled ? 1 : 0);
-            return true;
-        } else {
-            return super.onPreferenceTreeClick(preferenceScreen, preference);
-        }
-    }
-    private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
-        String intentUri = ((PreferenceScreen) preference).getIntent().toUri(1);
-        Pattern pattern = Pattern.compile("component=([^/]+)/");
-        Matcher matcher = pattern.matcher(intentUri);
-
-        String packageName = matcher.find() ? matcher.group(1) : null;
-        if (packageName != null) {
-            try {
-                getPackageManager().getPackageInfo(packageName, 0);
-            } catch (NameNotFoundException e) {
-                Log.e(TAG, "package " + packageName + " not installed, hiding preference.");	
-                getPreferenceScreen().removePreference(preference);
-                return true;
-            }
-        }
-        return false;
+    private void updateState() {
+        readFontSizePreference(mFontSizePref);
     }
 
+    public void writeFontSizePreference(Object objValue) {
+        try {
+            mCurConfig.fontScale = Float.parseFloat(objValue.toString());
+            ActivityManagerNative.getDefault().updatePersistentConfiguration(mCurConfig);
+        } catch (RemoteException e) {
+            Log.w(TAG, "Unable to save font size");
+        }
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        final String key = preference.getKey();
+        if (KEY_FONT_SIZE.equals(key)) {
+            writeFontSizePreference(objValue);
+        }
+
+        return true;
+    }
 }
