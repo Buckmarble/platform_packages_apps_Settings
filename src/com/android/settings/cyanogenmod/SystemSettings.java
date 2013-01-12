@@ -23,8 +23,6 @@ import android.content.Context;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.view.IWindowManager;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.preference.Preference;
@@ -43,7 +41,6 @@ import java.util.regex.Pattern;
 public class SystemSettings extends SettingsPreferenceFragment {
     private static final String TAG = "SystemSettings";
 
-    private static final String KEY_POWER_BUTTON_TORCH = "power_button_torch";
 
     private CheckBoxPreference mPowerButtonTorch;
     private static final String KEY_LOCK_CLOCK = "lock_clock";
@@ -61,14 +58,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
         // Dont display the lock clock preference if its not installed
         removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
 
-        mPowerButtonTorch = (CheckBoxPreference) findPreference(KEY_POWER_BUTTON_TORCH);
-        if (torchSupported()) {
-            mPowerButtonTorch.setChecked((Settings.System.getInt(getActivity().
-                    getApplicationContext().getContentResolver(),
-                    Settings.System.POWER_BUTTON_TORCH, 0) == 1));
-        } else {
-            getPreferenceScreen().removePreference(mPowerButtonTorch);
-        }
     }
 
     @Override
@@ -81,6 +70,7 @@ public class SystemSettings extends SettingsPreferenceFragment {
         super.onPause();
     }
 
+<<<<<<< HEAD
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mPowerButtonTorch) {
@@ -110,4 +100,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
         return false;
     }
 
+=======
+>>>>>>> parent of 54a8746... Option to toggle torch using power button (2/2)
 }
