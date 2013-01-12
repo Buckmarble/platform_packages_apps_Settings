@@ -42,7 +42,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
     private static final String TAG = "SystemSettings";
 
 
-    private CheckBoxPreference mPowerButtonTorch;
     private static final String KEY_LOCK_CLOCK = "lock_clock";
 
     private boolean torchSupported() {
