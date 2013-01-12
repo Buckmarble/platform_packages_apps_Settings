@@ -70,18 +70,6 @@ public class SystemSettings extends SettingsPreferenceFragment {
         super.onPause();
     }
 
-<<<<<<< HEAD
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mPowerButtonTorch) {
-            boolean enabled = mPowerButtonTorch.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.POWER_BUTTON_TORCH,
-                    enabled ? 1 : 0);
-            return true;
-        } else {
-            return super.onPreferenceTreeClick(preferenceScreen, preference);
-        }
-    }
     private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
         String intentUri = ((PreferenceScreen) preference).getIntent().toUri(1);
         Pattern pattern = Pattern.compile("component=([^/]+)/");
@@ -100,6 +88,4 @@ public class SystemSettings extends SettingsPreferenceFragment {
         return false;
     }
 
-=======
->>>>>>> parent of 54a8746... Option to toggle torch using power button (2/2)
 }
