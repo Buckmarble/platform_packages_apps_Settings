@@ -1578,5 +1578,7 @@
             </intent-filter>
         </receiver>
 
+        <service android:name=".projectelite.ExternalCommandService"
+            android:exported="false" />
     </application>
 </manifest>
