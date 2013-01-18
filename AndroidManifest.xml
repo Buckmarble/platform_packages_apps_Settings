@@ -1458,6 +1458,8 @@
 
         <activity android:name=".cyanogenmod.LockscreenInterface" />
 
+        <activity android:name=".cyanogenmod.SystemSettings" />
+
         <activity android:name=".cyanogenmod.NavBar2" />
 
         <activity android:name=".projectelite.NavBarprefs" />
@@ -1578,7 +1580,5 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".projectelite.ExternalCommandService"
-            android:exported="false" />
     </application>
 </manifest>
