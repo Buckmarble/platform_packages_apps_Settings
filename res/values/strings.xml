@@ -4997,7 +4997,7 @@
     <string name="pie_menu_title">Persistent menu button</string>
     <string name="pie_menu_summary">Always show menu button even when it\'s not necessary</string>
 
-
+    <string name="pieprefs_settings">Pie Controls</string>
     <string name="pie_search_title">Search button</string>
     <string name="pie_search_summary">Enable search button on pie controls</string>
 

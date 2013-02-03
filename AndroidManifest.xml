@@ -1464,6 +1464,8 @@
 
         <activity android:name=".projectelite.NavBarprefs" />
 
+        <activity android:name=".projectelite.pieprefs" />
+
         <activity android:name=".cyanogenmod.PowerMenu" />
 
         <activity android:name=".profiles.NFCProfile"
