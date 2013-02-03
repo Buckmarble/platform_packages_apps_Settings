@@ -127,20 +127,15 @@ public class Toolbar extends SettingsPreferenceFragment
         mPieMode.setOnPreferenceChangeListener(this);
 
         mPieSize = (ListPreference) prefSet.findPreference(PIE_SIZE);
-        mPieTrigger = (ListPreference) prefSet.findPreference(PIE_TRIGGER);
-        try {
-            float pieSize = Settings.System.getFloat(mContext.getContentResolver(),
-                    Settings.System.PIE_SIZE);
-            mPieSize.setValue(String.valueOf(pieSize));
-  
-            float pieTrigger = Settings.System.getFloat(mContext.getContentResolver(),
-                    Settings.System.PIE_TRIGGER);
-            mPieTrigger.setValue(String.valueOf(pieTrigger));
-        } catch(Settings.SettingNotFoundException ex) {
-            // So what
-        }
-
+        String pieSize = Settings.System.getString(mContext.getContentResolver(),
+                Settings.System.PIE_SIZE);
+        mPieSize.setValue(pieSize != null && !pieSize.isEmpty() ? pieSize : "1");
         mPieSize.setOnPreferenceChangeListener(this);
+
+        mPieTrigger = (ListPreference) prefSet.findPreference(PIE_TRIGGER);
+        String pieTrigger = Settings.System.getString(mContext.getContentResolver(),
+                Settings.System.PIE_TRIGGER);
+        mPieTrigger.setValue(pieTrigger != null && !pieTrigger.isEmpty() ? pieTrigger : "1");
         mPieTrigger.setOnPreferenceChangeListener(this);
 
         mPieGap = (ListPreference) prefSet.findPreference(PIE_GAP);
@@ -243,9 +238,9 @@ public class Toolbar extends SettingsPreferenceFragment
                     Settings.System.PIE_GAP, pieGap);
             return true;
         } else if (preference == mPieTrigger) {
-            float pieTrigger = Float.valueOf((String) newValue);
+            float pierigger = Float.valueOf((String) newValue);
             Settings.System.putFloat(getActivity().getContentResolver(),
-                    Settings.System.PIE_TRIGGER, pieTrigger);
+                    Settings.System.PIE_TRIGGER, pierigger);
             return true;
         }
         return false;
