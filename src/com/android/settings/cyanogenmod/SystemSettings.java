@@ -49,7 +49,6 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
     private static final String TAG = "SystemSettings";
 
-
     private static final String KEY_LOCK_CLOCK = "lock_clock";
     private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 
