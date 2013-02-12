@@ -4613,7 +4613,7 @@
     <string name="pie_search_title">Show search button</string>
     <string name="pie_search_summary">Access to GoogleNow via Pie</string>
     <string name="pie_center_title">Center pie</string>
-    <string name="pie_center_summary">If un-checked, pie appears where your fingers is</string>
+    <string name="pie_center_summary">If un-checked, pie appears where your fingers triggers it</string>
     <string name="all_color">Custom Colors</string>
     <string name="stock_color">Default Colors</string>
 
