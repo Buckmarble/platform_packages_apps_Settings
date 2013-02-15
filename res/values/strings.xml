@@ -5008,4 +5008,13 @@
    <string name="multipane_ui">Enable/Disable Dual panel</string>
    <string name="multipane_ui_summary">This will Enable/Disable Dual panel view (Reboot Required!)</string>
 
+    <!-- Battery bar -->
+    <string name="battery_bar">Battery bar location</string>
+    <string name="battery_bar_color">Battery bar color</string>
+    <string name="battery_bar_cat">Battery bar options</string>
+    <string name="battery_bar_style_title">Battery bar style</string>
+    <string name="battery_bar_thickness_title">Battery bar thickness</string>
+    <string name="battery_bar_animate_title">Charging animation</string>
+    <string name="battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
+
 </resources>
