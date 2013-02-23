@@ -5060,4 +5060,7 @@
     <string name="notification_shortcuts_icon_picker_twitter">Twitter</string>
     <string name="notification_shortcuts_icon_picker_unlock">Unlock</string>
 
+   <!-- Low Battery Warning -->
+   <string name="pref_low_battery_warning_policy_title">Low battery warning</string>
+
 </resources>

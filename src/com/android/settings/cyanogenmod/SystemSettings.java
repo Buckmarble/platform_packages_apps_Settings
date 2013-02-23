@@ -52,9 +52,11 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     private static final String KEY_LOCK_CLOCK = "lock_clock";
     private static final String KEY_PIE_CONTROL = "pie_control";
     private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
+    private static final String PREF_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
 
     CheckBoxPreference mDualpane;
     private PreferenceScreen mPieControl;
+    private ListPreference mLowBatteryWarning;
 
     private boolean torchSupported() {
         return getResources().getBoolean(R.bool.has_led_flash);
@@ -70,6 +72,13 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
         // Pie controls
         mPieControl = (PreferenceScreen) findPreference(KEY_PIE_CONTROL);
+
+        mLowBatteryWarning = (ListPreference) findPreference(PREF_LOW_BATTERY_WARNING_POLICY);
+        int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
+                                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 3);
+        mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
+        mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
+        mLowBatteryWarning.setOnPreferenceChangeListener(this);
 
         removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
 
@@ -101,6 +110,13 @@ public class SystemSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.FORCE_DUAL_PANEL,
                     ((CheckBoxPreference)preference).isChecked() ? 0 : 1);
+            return true;
+        } else if (preference == mLowBatteryWarning) {
+            int lowBatteryWarning = Integer.valueOf((String) Value);
+            int index = mLowBatteryWarning.findIndexOfValue((String) Value);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, lowBatteryWarning);
+            mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
             return true;
         }
         return false;
