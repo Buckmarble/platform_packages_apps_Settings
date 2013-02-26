@@ -62,7 +62,6 @@ public class Pie extends SettingsPreferenceFragment
     private CheckBoxPreference mPieMenu;
     private CheckBoxPreference mPieSearch;
     private CheckBoxPreference mPieCenter;
-=======
     private CheckBoxPreference mPieStick;
 
     private Context mContext;
