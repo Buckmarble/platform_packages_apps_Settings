@@ -70,14 +70,6 @@
             android:entryValues="@array/values_pie_size" />
 
         <ListPreference
-            android:key="pie_mode"
-            android:dialogTitle="@string/pie_mode_title"
-            android:title="@string/pie_mode_title"
-            android:summary="@string/pie_mode_summary"
-            android:entries="@array/entries_pie_mode"
-            android:entryValues="@array/values_pie_mode" />
-
-        <ListPreference
             android:key="pie_gap"
             android:dialogTitle="@string/pie_gap_title"
             android:title="@string/pie_gap_title"
