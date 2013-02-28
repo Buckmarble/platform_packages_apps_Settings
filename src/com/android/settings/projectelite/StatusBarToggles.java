@@ -34,6 +34,7 @@ import android.widget.TextView;
 
 import com.android.settings.PEPreferenceFragment;
 import com.android.settings.R;
+import com.android.settings.Utils;
 import com.android.settings.widget.TouchInterceptor;
 import com.android.settings.widget.SeekBarPreference;
 
@@ -49,6 +50,7 @@ public class StatusBarToggles extends PEPreferenceFragment implements
     private static final String PREF_TOGGLES_PER_ROW = "toggles_per_row";
     private static final String PREF_TOGGLE_FAV_CONTACT = "toggle_fav_contact";
     private final int PICK_CONTACT = 1;
+    private static final String QUICK_PULLDOWN = "quick_pulldown";
 
     Preference mEnabledToggles;
     Preference mLayout;
