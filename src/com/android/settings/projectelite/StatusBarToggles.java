@@ -95,6 +95,7 @@ public class StatusBarToggles extends PEPreferenceFragment implements
         super.onActivityCreated(savedInstanceState);
 
 	PreferenceScreen prefSet = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getApplicationContext().getContentResolver();
 
         mQuickPulldown = (ListPreference) prefSet.findPreference(QUICK_PULLDOWN);
         if (!Utils.isPhone(getActivity())) {
