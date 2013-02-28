@@ -4923,6 +4923,9 @@
     <string name="advanced_system_settings_title">Advanced options</string>
     <string name="spareparts_settings_title">Spare Parts settings</string>
     <string name="qs_title">Quick Settings Control</string>
+    <string name="quick_pulldown_off">Off</string>
+    <string name="quick_pulldown_left">Left</string>
+    <string name="quick_pulldown_right">Right</string>
 
     <!-- Toggle Strings to be called from device overlays -->
     <string name="toggle_airplane_mode">Airplane Mode</string>
