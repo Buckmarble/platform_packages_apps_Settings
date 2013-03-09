@@ -5072,4 +5072,6 @@
     <string name="custom_carrier_label_notset">Custom label currently not set</string>
     <string name="interface_title">Custom Carrier Label</string>
 
+    <!-- TRDS Settings -->
+    <string name="trds_settings_title">Dark Project Elite</string>
 </resources>
