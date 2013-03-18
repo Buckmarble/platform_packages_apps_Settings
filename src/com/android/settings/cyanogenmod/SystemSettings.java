@@ -50,9 +50,11 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     private static final String TAG = "SystemSettings";
 
     private static final String KEY_LOCK_CLOCK = "lock_clock";
+    private static final String KEY_PIE_CONTROL = "pie_control";
     private static final String PREF_FORCE_DUAL_PANEL = "force_dualpanel";
 
     CheckBoxPreference mDualpane;
+    private PreferenceScreen mPieControl;
 
     private boolean torchSupported() {
         return getResources().getBoolean(R.bool.has_led_flash);
@@ -65,6 +67,10 @@ public class SystemSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.system_settings);
 
         // Dont display the lock clock preference if its not installed
+
+        // Pie controls
+        mPieControl = (PreferenceScreen) findPreference(KEY_PIE_CONTROL);
+
         removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
 
         mDualpane = (CheckBoxPreference) findPreference(PREF_FORCE_DUAL_PANEL);
@@ -75,6 +81,11 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     @Override
     public void onResume() {
         super.onResume();
+
+        if (mPieControl != null) {
+            updatePieControlDescription();
+        }
+
     }
 
     @Override
@@ -93,6 +104,15 @@ public class SystemSettings extends SettingsPreferenceFragment implements
             return true;
         }
         return false;
+    }
+
+    private void updatePieControlDescription() {
+        if (Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.PIE_CONTROLS, 0) == 1) {
+            mPieControl.setSummary(getString(R.string.pie_control_enabled));
+        } else {
+            mPieControl.setSummary(getString(R.string.pie_control_disabled));
+        }
     }
 
     private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
