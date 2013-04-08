@@ -46,6 +46,12 @@
         android:title="@string/notification_shortcuts_settings_title"
         android:summary="@string/notification_shortcuts_settings_summary" />
 
+    <CheckBoxPreference
+        android:key="notification_show_wifi_ssid"
+        android:title="@string/notification_show_wifi_ssid_title"
+        android:summary="@string/notification_show_wifi_ssid_summary"
+        android:defaultValue="false" />
+
     <ListPreference
         android:key="pref_low_battery_warning_policy"
         android:title="@string/pref_low_battery_warning_policy_title"
