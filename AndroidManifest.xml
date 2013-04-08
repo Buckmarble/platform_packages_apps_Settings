@@ -1479,7 +1479,6 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
         <activity android:name=".notificationlight.NotificationLightSettings" />
 
         <activity android:name=".notificationlight.BatteryLightSettings" />
