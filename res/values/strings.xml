@@ -5066,4 +5066,10 @@
    <!-- Low Battery Warning -->
    <string name="pref_low_battery_warning_policy_title">Low battery warning</string>
 
+    <!-- Interface -->
+    <string name="custom_carrier_label_title">Carrier Label</string>
+    <string name="custom_carrier_label_explain">Please enter a new label. Empty label to revert to stock</string>
+    <string name="custom_carrier_label_notset">Custom label currently not set</string>
+    <string name="interface_title">Custom Carrier Label</string>
+
 </resources>

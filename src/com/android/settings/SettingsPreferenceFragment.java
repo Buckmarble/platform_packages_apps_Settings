@@ -20,6 +20,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -42,6 +43,8 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
 
     private static final String TAG = "SettingsPreferenceFragment";
 
+    protected Context mContext;
+
     private static final int MENU_HELP = Menu.FIRST + 100;
 
     private SettingsDialogFragment mDialogFragment;
@@ -51,7 +54,7 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
+        mContext = getActivity();
         // Prepare help url and enable menu if necessary
         int helpResource = getHelpResource();
         if (helpResource != 0) {
@@ -82,11 +85,19 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
         return 0;
     }
 
+    public void setTitle(int resId) {
+        getActivity().setTitle(resId);
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (mHelpUrl != null && getActivity() != null) {
+        if (mHelpUrl != null) {
+            Intent helpIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mHelpUrl));
+            helpIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
             MenuItem helpItem = menu.add(0, MENU_HELP, 0, R.string.help_label);
-            HelpUtils.prepareHelpMenuItem(getActivity(), helpItem, mHelpUrl);
+            helpItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            helpItem.setIntent(helpIntent);
         }
     }
 
