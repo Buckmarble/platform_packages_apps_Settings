@@ -58,7 +58,7 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
     CheckBoxPreference mDualpane;
     private PreferenceScreen mPieControl;
-    private CheckBoxPreference mShowWifiName;
+    CheckBoxPreference mShowWifiName;
     private ListPreference mLowBatteryWarning;
 
     private boolean torchSupported() {
@@ -77,8 +77,7 @@ public class SystemSettings extends SettingsPreferenceFragment implements
         mPieControl = (PreferenceScreen) findPreference(KEY_PIE_CONTROL);
 
         mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
-        mShowWifiName.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+            mShowWifiName.setOnPreferenceChangeListener(this);
 
         mLowBatteryWarning = (ListPreference) findPreference(PREF_LOW_BATTERY_WARNING_POLICY);
         int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
@@ -91,7 +90,6 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
         mDualpane = (CheckBoxPreference) findPreference(PREF_FORCE_DUAL_PANEL);
             mDualpane.setOnPreferenceChangeListener(this);
-
     }
 
     @Override
@@ -126,8 +124,10 @@ public class SystemSettings extends SettingsPreferenceFragment implements
             mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntries()[index]);
             return true;
          } else if (preference == mShowWifiName) {
-            Settings.System.putInt(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
-                    mShowWifiName.isChecked() ? 1 : 0);
+            Settings.System.putInt(getActivity().getContentResolver(),
+		    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
+                    ((CheckBoxPreference)preference).isChecked() ? 0 : 1);
+	    return true;
         }
         return false;
     }
