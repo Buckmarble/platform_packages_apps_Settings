@@ -67,6 +67,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.settings.R;
+import com.android.settings.projectelite.Helpers;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.slim.notificationshortcuts.IconPicker;
 import com.android.settings.slim.notificationshortcuts.ShortcutPickHelper;
@@ -275,6 +276,7 @@ public class NotificationShortcuts extends SettingsPreferenceFragment implements
             public boolean onPreferenceChange(Preference preference,
                         Object newValue) {
                 Settings.System.putInt(mCr, Settings.System.NOTIFICATION_SHORTCUTS_HIDE_CARRIER, (Boolean) newValue ? 1 : 0);
+                Helpers.restartSystemUI();
                 return true;
             }
         });
