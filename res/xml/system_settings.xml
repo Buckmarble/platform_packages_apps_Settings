@@ -44,6 +44,26 @@
         android:title="@string/interface_title"
         android:fragment="com.android.settings.projectelite.InterfaceSettings" />
 
+    <PreferenceScreen
+        android:id="@+id/slim_notification_shortcuts"
+        android:fragment="com.android.settings.slim.notificationshortcuts.NotificationShortcuts"
+        android:key="slim_shortcuts_settings"
+        android:title="@string/notification_shortcuts_settings_title"
+        android:summary="@string/notification_shortcuts_settings_summary" />
+
+    <CheckBoxPreference
+        android:key="notification_show_wifi_ssid"
+        android:title="@string/notification_show_wifi_ssid_title"
+        android:summary="@string/notification_show_wifi_ssid_summary"
+        android:defaultValue="false" />
+
+    <ListPreference
+        android:key="pref_low_battery_warning_policy"
+        android:title="@string/pref_low_battery_warning_policy_title"
+        android:entries="@array/pref_low_battery_warning_policy_entries"
+        android:entryValues="@array/pref_low_battery_warning_policy_values"
+        android:defaultValue="3" />
+
     <!-- Lock clock -->
     <PreferenceScreen
         android:key="lock_clock"
@@ -53,5 +73,11 @@
                 android:targetPackage="com.cyanogenmod.lockclock"
                 android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
     </PreferenceScreen>
+
+    <CheckBoxPreference
+	android:key="force_dualpanel"
+	android:title="@string/multipane_ui"
+	android:summary="@string/multipane_ui_summary"
+	android:defaultValue="false" />
 
 </PreferenceScreen>
