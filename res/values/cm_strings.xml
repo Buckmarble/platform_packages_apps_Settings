@@ -23,4 +23,6 @@
     <string name="pie_control_sensitivity_high">High</string>
     <string name="pie_control_sensitivity_very_high">Very high</string>
 
+    <string name="toggleNfc">NFC</string> 
+
 </resources>
