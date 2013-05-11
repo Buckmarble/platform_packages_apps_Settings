@@ -1507,6 +1507,16 @@
                 <action android:name="com.android.settings.ACTION_CHANGE_FCHARGE_STATE" />
             </intent-filter>
         </receiver>
+        <activity
+            android:name=".cyanogenmod.TransparencyDialog"
+            android:theme="@android:style/Theme.Dialog"
+            android:label="@string/interface_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.android.settings.SHORTCUT" />
+            </intent-filter>
+        </activity>
 
         <!-- CyanogenMod/ProjectElite activities End -->
 

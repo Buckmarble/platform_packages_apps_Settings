@@ -49,4 +49,7 @@
              android:defaultValue="100|10"
              android:persistent="false" />
 
+        <Preference
+            android:key="transparency_dialog"
+            android:title="@string/transparency_dialog_title" />
 </PreferenceScreen>
