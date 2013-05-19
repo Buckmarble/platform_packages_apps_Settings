@@ -5076,7 +5076,7 @@
     <string name="trds_settings_title">Dark Project Elite</string>
 
     <!-- CRT Animation -->
-    <string name="system_power_crt_screen_off_title">CRT Screen Off</string>
+    <string name="system_power_crt_screen_off_title">CRT Screen On</string>
     <string name="system_power_crt_screen_off_summary">Screen will animate an Electron Beam when turned off</string>
     <string name="system_power_crt_mode_title">CRT animation mode</string>
     <string name="system_power_crt_mode_dialog_title">Show CRT animation</string>
