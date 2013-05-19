@@ -40,6 +40,7 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceScreen;
+import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -73,9 +74,14 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String ROTATION_ANGLE_DELIM = ", ";
     private static final String ROTATION_ANGLE_DELIM_FINAL = " & ";
 
+    //CRT animation options
+    private static final String PREF_POWER_CRT_MODE = "system_power_crt_mode";
+    private static final String PREF_POWER_CRT_SCREEN_OFF = "system_power_crt_screen_off";
+
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
     private DisplayManager mDisplayManager;
+    private static ContentResolver mContentResolver;
 
     private CheckBoxPreference mVolumeWake;
     private CheckBoxPreference mAccelerometer;
@@ -83,6 +89,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
     private PreferenceScreen mDisplayRotationPreference;
+    ListPreference mCrtMode;
+    CheckBoxPreference mCrtOff;
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -182,6 +190,18 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                         Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
             }
         }
+
+        boolean isCrtOffChecked = (Settings.System.getBoolean(mContentResolver,
+                        Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, true));
+        mCrtOff = (CheckBoxPreference) findPreference(PREF_POWER_CRT_SCREEN_OFF);
+        mCrtOff.setChecked(isCrtOffChecked);
+
+        mCrtMode = (ListPreference) findPreference(PREF_POWER_CRT_MODE);
+        int crtMode = Settings.System.getInt(mContentResolver,
+                Settings.System.SYSTEM_POWER_CRT_MODE, 0);
+        mCrtMode.setValue(Integer.toString(Settings.System.getInt(mContentResolver,
+                Settings.System.SYSTEM_POWER_CRT_MODE, crtMode)));
+        mCrtMode.setOnPreferenceChangeListener(this);
 
     }
 
@@ -439,8 +459,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_WAKE_SCREEN,
                     mVolumeWake.isChecked() ? 1 : 0);
             return true;
-        }
-
+        } else if (preference == mCrtOff) {
+            Settings.System.putBoolean(mContentResolver,
+                    Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
+                    ((TwoStatePreference) preference).isChecked());
+            return true;
+	}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -454,7 +478,14 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
-        }
+        } else if (preference == mCrtMode) {
+            int crtMode = Integer.valueOf((String) objValue);
+            int index = mCrtMode.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SYSTEM_POWER_CRT_MODE, crtMode);
+            mCrtMode.setSummary(mCrtMode.getEntries()[index]);
+            return true;
+	}
         if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
         }
