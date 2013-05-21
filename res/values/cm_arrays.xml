@@ -16,10 +16,19 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Pie controls -->
-    <string name="pie_control_sensitivity_title">Responsiveness</string>
-    <string name="pie_control_sensitivity_low">Low</string>
-    <string name="pie_control_sensitivity_medium">Medium</string>
-    <string name="pie_control_sensitivity_high">High</string>
-    <string name="pie_control_sensitivity_very_high">Very high</string>
+    <string-array name="pie_control_sensitivity_entries" translatable="false">
+        <item>@string/pie_control_sensitivity_low</item>
+        <item>@string/pie_control_sensitivity_medium</item>
+        <item>@string/pie_control_sensitivity_high</item>
+        <item>@string/pie_control_sensitivity_very_high</item>
+    </string-array>
+
+    <string-array name="pie_control_sensitivity_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 
 </resources>
+
