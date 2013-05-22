@@ -57,7 +57,7 @@ public class TRDSEnabler implements CompoundButton.OnCheckedChangeListener {
 
     private void setSwitchState() {
         boolean enabled = Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.UI_INVERTED_MODE, 0) == 0;
+                Settings.Secure.UI_INVERTED_MODE, 1) == 0;
         mStateMachineEvent = true;
         mSwitch.setChecked(enabled);
         mStateMachineEvent = false;
