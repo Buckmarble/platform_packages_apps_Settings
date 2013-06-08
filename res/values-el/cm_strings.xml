@@ -311,7 +311,6 @@
     <string name="profile_select">Επιλογή προφίλ</string>
     <string name="link_volume_ringtones">Σύνδεση εντάσεων</string>
     <string name="link_volume_mutes">Σίγαση ειδοποιήσεων στο Αθόρυβο</string>
-    <string name="notification_pulse_title">Φωτεινός παλμός ειδοποίησης</string>
     <string name="notification_light_general_title">Γενικά</string>
     <string name="notification_light_applist_title">Εφαρμογές</string>
     <string name="notification_light_phonelist_title">Τηλέφωνο</string>

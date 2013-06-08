@@ -285,7 +285,6 @@
     <string name="link_volume_ringtones">Połącz głośność dzwonka &amp; powiadomień</string>
     <string name="link_volume_mutes">Tryb cichy wpływa na powiadomienia</string>
     <string name="volume_keys_control_ring_stream">Przyciski głośności regulują głośność dzwonka</string>
-    <string name="notification_pulse_title">Dioda powiadomień</string>
     <string name="notification_light_general_title">Ogólne</string>
     <string name="notification_light_applist_title">Aplikacje</string>
     <string name="notification_light_phonelist_title">Telefon</string>

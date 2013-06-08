@@ -309,7 +309,6 @@
     <string name="link_volume_ringtones">Zilsesi ve bildirim ses düzeyini bağla</string>
     <string name="link_volume_mutes">Sessiz modu bildirimleri etkiler</string>
     <string name="volume_keys_control_ring_stream">Ses tuşları zil sesi düzeyini kontrol eder</string>
-    <string name="notification_pulse_title">Bildirim ışığı</string>
     <string name="notification_light_general_title">Genel</string>
     <string name="notification_light_applist_title">Uygulamalar</string>
     <string name="notification_light_phonelist_title">Telefon</string>

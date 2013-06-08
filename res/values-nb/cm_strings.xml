@@ -309,7 +309,6 @@
     <string name="profile_select">Velg profil</string>
     <string name="link_volume_ringtones">Link ringetone &amp; varslings voulum</string>
     <string name="link_volume_mutes">Stillemodus påvirker varslinger</string>
-    <string name="notification_pulse_title">Varslingslys</string>
     <string name="notification_light_general_title">Generelt</string>
     <string name="notification_light_applist_title">Applikasjoner</string>
     <string name="notification_light_phonelist_title">Telefon</string>

@@ -563,8 +563,6 @@
     <string name="lock_clock_summary">Konfigurér, hvordan Start- og Skærmlås-widgets for \'cLock\' bliver vist</string>
     <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
     <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
-    <string name="stylus_icon_enabled_title">Vis ikon ved brug af pen</string>
-    <string name="stylus_icon_enabled_summary">Vis markøren, når pennen benyttes</string>
     <string name="lockscreen_maximize_widgets_title">Maksimér widgets</string>
     <string name="lockscreen_maximize_widgets_summary">Vis widgets maksimeret og låsen minimeret, når skærmen er tændt</string>
     <string name="lockscreen_custom_background_title">Baggrund</string>
@@ -574,8 +572,6 @@
     <string name="lockscreen_background_color_fill">Fyldfarve</string>
     <string name="lockscreen_background_custom_image">Brugerdefineret billede</string>
     <string name="lockscreen_background_default_wallpaper">Standardtapet</string>
-    <string name="headset_connect_player_title">Start musik-app</string>
-    <string name="headset_connect_player_summary">Start standard-app til musik, når headset tilsluttes</string>
     <string name="safe_headset_volume_title">Sikker lydstyrke for håndfri</string>
     <string name="safe_headset_volume_summary">Undgå høje lydstyrkeniveauer, når håndfri tilsluttes først</string>
     <string name="cyanogenmod_waiver_title">Ophævelse</string>
